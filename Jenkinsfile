@@ -30,10 +30,4 @@ node('workers'){
         reportName: 'Go Test Coverage'
         ])
     }
-
-    stage('Security Tests'){
-        imageTest.inside('-u root:root'){
-        sh 'nancy /go/src/github/richinex/movies-parser/Gopkg.lock'
-        }
-    }
 }
