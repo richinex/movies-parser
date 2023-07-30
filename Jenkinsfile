@@ -12,7 +12,8 @@ node('workers'){
 
     stage('Unit Tests'){
         imageTest.inside{
-            sh 'go test'
+            sh 'go test -coverprofile=cover/cover.cov'
+            sh 'go tool cover -html=cover/coverage.cov -o coverage.html'
         }
     }
     }
