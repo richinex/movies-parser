@@ -20,6 +20,12 @@ node('workers'){
         }
     }
 
+    stage('Security Tests'){
+        imageTest.inside('-u root:root'){
+        sh 'nancy /go/src/github/richinex/movies-parser/Gopkg.lock'
+        }
+    }
+
     stage('Publish Coverage Report'){
         publishHTML(target: [
         allowMissing: false,
@@ -30,4 +36,5 @@ node('workers'){
         reportName: 'Go Test Coverage'
         ])
     }
+
 }
