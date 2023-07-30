@@ -29,7 +29,7 @@ node('workers'){
                 reportFiles: 'coverage.html',
                 reportName: 'Go Test Coverage'
                 ])
-            },
+            }
         )
     }
 }
