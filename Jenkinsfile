@@ -9,12 +9,15 @@ node('workers'){
         imageTest.inside{
             sh 'golint'
         }
+    }
 
     stage('Unit Tests'){
-        imageTest.inside{
-            sh 'go test -coverprofile=cover/cover.cov'
-            sh 'go tool cover -html=cover/coverage.cov -o coverage.html'
-        }
+    imageTest.inside{
+        sh 'mkdir -p cover' // Create the cover directory if it does not exist
+        sh 'go test -coverprofile=cover/cover.cov'
+        sh 'go tool cover -html=cover/coverage.cov -o coverage.html'
     }
-    }
+}
+
+
 }
