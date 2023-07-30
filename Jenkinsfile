@@ -12,12 +12,11 @@ node('workers'){
     }
 
     stage('Unit Tests'){
-    imageTest.inside{
-        sh 'mkdir -p cover' // Create the cover directory if it does not exist
-        sh 'go test -coverprofile=cover/cover.cov'
-        sh 'go tool cover -html=cover/coverage.cov -o coverage.html'
+        imageTest.inside{
+            sh 'mkdir -p coverage' // Create the coverage directory if it does not exist
+            sh 'go test -coverprofile=coverage/coverage.cov'
+            sh 'go tool cover -html=coverage/coverage.cov -o coverage.html'
+        }
     }
-}
-
 
 }
