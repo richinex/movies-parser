@@ -3,7 +3,6 @@ node('workers') {
     stage('Checkout') {
         checkout scm
     }
-
     def imageTest = docker.build("${imageName}-test", "-f Dockerfile.test .")
     stage('Pre-integration Tests') {
         parallel(
@@ -12,6 +11,7 @@ node('workers') {
                     sh 'golint'
                 }
             },
+            
             'Unit Tests': {
                 sh 'mkdir -p coverage' // Create the coverage directory on the Jenkins host
                 imageTest.inside("-v ${env.WORKSPACE}/coverage:/go/src/github.com/richinex/movies-parser/coverage") {
