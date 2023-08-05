@@ -8,7 +8,7 @@ WORKDIR /go/src/github.com/richinex/movies-parser
 
 # Copy the main.go and go.mod files from your local host (your machine or build server) to the Docker image.
 # It's considered a good practice to copy just the files you need to build your application.
-COPY main.go go.mod .
+COPY main.go go.mod ./
 
 # Get the dependencies of the Go application.
 # The -v flag enables verbose output.
