@@ -11,7 +11,7 @@ node('workers') {
                     sh 'golint'
                 }
             },
-            
+
             'Unit Tests': {
                 sh 'mkdir -p coverage' // Create the coverage directory on the Jenkins host
                 imageTest.inside("-v ${env.WORKSPACE}/coverage:/go/src/github.com/richinex/movies-parser/coverage") {
@@ -31,5 +31,8 @@ node('workers') {
                 ])
             }
         )
+    }
+     stage('Build'){
+        docker.build(imageName)
     }
 }
